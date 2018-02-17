@@ -35,7 +35,7 @@ public class ResourceManager implements DownloadListener {
     private Map<String, ResourceRequest> requestMap = new HashMap<>();
     private Map<String, OnResourceLoadedListener> listenerMap = new HashMap<>();
     private Downloader downloader;
-    private final Handler mainHandler = new Handler(Looper.getMainLooper());
+    private final Handler mainHandler = new Handler();
     private ResourceCache cache;
 
 
@@ -156,7 +156,17 @@ public class ResourceManager implements DownloadListener {
 
 
     @Override
-    public void onFail(String tag, String message) {
-
+    public void onFail(String tag, final String message) {
+        final ResourceRequest resourceRequest = requestMap.remove(tag);
+        final OnResourceLoadedListener onResourceLoadedListener = listenerMap.remove(tag);
+        if (resourceRequest == null)
+            return;
+        mainHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (onResourceLoadedListener != null)
+                    onResourceLoadedListener.onError(new Exception(message));
+            }
+        });
     }
 }

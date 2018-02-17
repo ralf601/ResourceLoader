@@ -2,6 +2,7 @@ package com.hsn.resourceloadersample.screens.common.controllers;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -69,17 +70,17 @@ public class MainActivity extends AppCompatActivity implements BaseFragment.Abst
 
     private void testDownloader() {
 
+        String imageUrl = "https://stackoverflow.com";
+        //String imageUrl = "https://images.unsplash.com/profile-1464495186405-68089dcd96c3?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=32&w=32&s=63f1d805cffccb834cf839c719d91702";
         new ResourceRequest()
-                .load("http://pastebin.com/raw/wgkJgazE")
-                .as(JSONObject.class, new ResourceRequest.OnCompelTeListener<JSONObject>() {
+                .load(imageUrl)
+                .as(Bitmap.class, new ResourceRequest.OnCompeteListener<Bitmap>() {
                     @Override
-                    public void onComplete(JSONObject result) {
-                        Log.i("JSON", result.toString());
+                    public void onComplete(Bitmap result) {
+                        Log.i("","");
                     }
-
                     @Override
                     public void onError(Exception e) {
-
                     }
                 });
 

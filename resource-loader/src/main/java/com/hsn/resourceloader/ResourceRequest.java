@@ -7,7 +7,7 @@ package com.hsn.resourceloader;
 public class ResourceRequest {
 
 
-    public interface OnCompelTeListener<T> {
+    public interface OnCompeteListener<T> {
         void onComplete(T result);
         void onError(Exception e);
     }
@@ -21,7 +21,7 @@ public class ResourceRequest {
         return this;
     }
 
-    public <T> void as(final Class<T> clazz, final OnCompelTeListener<T> listener) {
+    public <T> void as(final Class<T> clazz, final OnCompeteListener<T> listener) {
         this.castClazz = clazz;
         requestIdentifier = ResourceManager.get().addRequest(this, new ResourceManager.OnResourceLoadedListener() {
             @Override

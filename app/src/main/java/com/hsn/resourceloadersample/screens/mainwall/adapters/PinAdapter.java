@@ -94,7 +94,7 @@ public class PinAdapter extends RecyclerView.Adapter<PinAdapter.ViewHolder> {
             name.setText(userContent.getUser().getName());
             date.setText(Utils.fromServerDateTimetoUiDateTime(userContent.getCreatedAt()));
 
-            new ResourceRequest().load(userContent.getUrls().getRegular()).as(Bitmap.class, new ResourceRequest.OnCompelTeListener<Bitmap>() {
+            new ResourceRequest().load(userContent.getUrls().getRegular()).as(Bitmap.class, new ResourceRequest.OnCompeteListener<Bitmap>() {
                 @Override
                 public void onComplete(Bitmap result) {
                     imageView.setImageBitmap(result);
@@ -105,7 +105,7 @@ public class PinAdapter extends RecyclerView.Adapter<PinAdapter.ViewHolder> {
                 }
             });
 
-            new ResourceRequest().load(userContent.getUser().getProfileImage().getMedium()).as(Bitmap.class, new ResourceRequest.OnCompelTeListener<Bitmap>() {
+            new ResourceRequest().load(userContent.getUser().getProfileImage().getMedium()).as(Bitmap.class, new ResourceRequest.OnCompeteListener<Bitmap>() {
                 @Override
                 public void onComplete(Bitmap result) {
                     profilePic.setImageBitmap(result);
