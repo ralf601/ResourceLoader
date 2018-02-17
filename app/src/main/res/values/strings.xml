@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Resource Loader Sample</string>
+    <string name="token_expired">Token Expired</string>
+
+</resources>
